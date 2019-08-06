@@ -2,7 +2,7 @@
 #
 # The MIT License (MIT)
 #
-# Copyright (c) 2016-2018 yutiansut/QUANTAXIS
+# Copyright (c) 2016-2019 yutiansut/QUANTAXIS
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 
 
 from functools import reduce
-
+import math
 import numpy as np
 import pandas as pd
 
@@ -231,3 +231,7 @@ def BARLAST(cond, yes=True):
         return len(cond)-cond.index.levels[0].tolist().index(cond[cond != yes].index[-1][0])-1
     elif isinstance(cond.index, pd.DatetimeIndex):
         return len(cond)-cond.index.tolist().index(cond[cond != yes].index[-1])-1
+
+
+XARROUND =  lambda x,y:np.round(y*(round(x/y-math.floor(x/y)+0.00000000001)+ math.floor(x/y)),2)
+

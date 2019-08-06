@@ -2,7 +2,7 @@
 #
 # The MIT License (MIT)
 #
-# Copyright (c) 2016-2018 yutiansut/QUANTAXIS
+# Copyright (c) 2016-2019 yutiansut/QUANTAXIS
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -47,14 +47,17 @@ from QUANTAXIS.QASU.main import (
     QA_SU_save_index_min,
     QA_SU_save_future_list,
     QA_SU_save_index_list,
+    QA_SU_save_etf_list,
     QA_SU_save_etf_day,
     QA_SU_save_etf_min,
     QA_SU_save_financialfiles,
-    QA_SU_save_option_day,
-    QA_SU_save_option_min,
+    QA_SU_save_option_50etf_day,
+    QA_SU_save_option_50etf_min,
     QA_SU_save_option_commodity_day,
     QA_SU_save_option_commodity_min,
     QA_SU_save_option_contract_list,
+    QA_SU_save_option_day_all,
+    QA_SU_save_option_min_all,
     QA_SU_save_future_day,
     QA_SU_save_future_min,
     QA_SU_save_future_min_all,
@@ -222,12 +225,15 @@ class CLI(cmd.Cmd):
             命令格式：save day  : save stock_day/xdxr index_day etf_day stock_list/index_list \n\
             命令格式：save min  : save stock_min/xdxr index_min etf_min stock_list/index_list \n\
             命令格式: save future: save future_day/min/list \n\
+            命令格式: save ox: save option_contract_list/option_day/option_min/option_commodity_day/option_commodity_min \n\
             ------------------------------------------------------------ \n\
             命令格式：save stock_day  : 保存日线数据 \n\
             命令格式：save stock_xdxr : 保存日除权除息数据 \n\
             命令格式：save stock_min  : 保存分钟线数据 \n\
-            命令格式：save index_day  : 保存指数数据 \n\
-            命令格式：save index_min  : 保存指数线数据 \n\
+            命令格式：save index_day  : 保存指数日线数据 \n\
+            命令格式：save index_min  : 保存指数分钟线数据 \n\
+            命令格式：save future_day  : 保存期货日线数据 \n\
+            命令格式：save future_min  : 保存期货分钟线数据 \n\
             命令格式：save etf_day    : 保存ETF日线数据 \n\
             命令格式：save etf_min    : 保存ET分钟数据 \n\
             命令格式：save stock_list : 保存股票列表 \n\
@@ -235,11 +241,14 @@ class CLI(cmd.Cmd):
             命令格式：save stock_info : 保存tushare数据接口获取的股票列表 \n\
             命令格式：save financialfiles : 保存高级财务数据(自1996年开始) \n\
             命令格式：save option_contract_list 保存上市的期权合约信息（不包括已经过期摘牌的合约数据）\n\
-            命令格式：save option_day : 保存50ETF期权日线数据（不包括已经过期摘牌的数据） \n\
-            命令格式：save option_min : 保存50ETF期权分钟线数据（不包括已经过期摘牌的数据） \n\
+            命令格式：save 50etf_option_day : 保存50ETF期权日线数据（不包括已经过期摘牌的数据） \n\
+            命令格式：save 50etf_option_min : 保存50ETF期权分钟线数据（不包括已经过期摘牌的数据） \n\
             命令格式：save option_commodity_day : 保存商品期权日线数据（不包括已经过期摘牌的数据） \n\
             命令格式：save option_commodity_min : 保存商品期权分钟线数据（不包括已经过期摘牌的数据） \n\
+            命令格式：save option_day_all : 保存所有期权日线数据（不包括已经过期摘牌的数据） \n\
+            命令格式：save option_min_all : 保存所有期权分钟数据（不包括已经过期摘牌的数据） \n\
             命令格式: save index_list : 保存指数列表 \n\
+            命令格式: save etf_list : 保存etf列表 \n\
             命令格式: save future_list : 保存期货列表 \n\
             ----------------------------------------------------------\n\
             if you just want to save daily data just\n\
@@ -268,11 +277,14 @@ class CLI(cmd.Cmd):
                             'password': 'admin'
                         }
                     )
+                # TODO: 将ts还是tdx作为命令传入
+                # QA_SU_save_stock_day('ts')
                 QA_SU_save_stock_day('tdx')
                 QA_SU_save_stock_xdxr('tdx')
                 # QA_SU_save_stock_min('tdx')
                 QA_SU_save_index_day('tdx')
                 # QA_SU_save_index_min('tdx')
+                QA_SU_save_etf_list('tdx')
                 # QA_SU_save_etf_day('tdx')
                 # QA_SU_save_etf_min('tdx')
                 QA_SU_save_index_list('tdx')
@@ -296,6 +308,7 @@ class CLI(cmd.Cmd):
                 # QA_SU_save_stock_min('tdx')
                 QA_SU_save_index_day('tdx')
                 # QA_SU_save_index_min('tdx')
+                QA_SU_save_etf_list('tdx')
                 QA_SU_save_etf_day('tdx')
                 # QA_SU_save_etf_min('tdx')
                 QA_SU_save_index_list('tdx')
@@ -318,6 +331,7 @@ class CLI(cmd.Cmd):
                 QA_SU_save_stock_min('tdx')
                 # QA_SU_save_index_day('tdx')
                 QA_SU_save_index_min('tdx')
+                QA_SU_save_etf_list('tdx')
                 # QA_SU_save_etf_day('tdx')
                 QA_SU_save_etf_min('tdx')
                 QA_SU_save_stock_list('tdx')
@@ -337,6 +351,7 @@ class CLI(cmd.Cmd):
                 QA_SU_save_stock_min('tdx')
                 QA_SU_save_index_day('tdx')
                 QA_SU_save_index_min('tdx')
+                QA_SU_save_etf_list('tdx')
                 QA_SU_save_etf_day('tdx')
                 QA_SU_save_etf_min('tdx')
                 QA_SU_save_stock_list('tdx')
@@ -372,6 +387,24 @@ class CLI(cmd.Cmd):
                 QA_SU_save_future_day_all('tdx')
                 QA_SU_save_future_min_all('tdx')
                 QA_SU_save_future_list('tdx')
+
+            elif len(arg) == 1 and arg[0] == '50etf_option_day':
+                QA_SU_save_option_50etf_day('tdx')
+
+            elif len(arg) == 1 and arg[0] == '50etf_option_min':
+                QA_SU_save_option_50etf_min('tdx')
+
+            elif len(arg) == 1 and arg[0] == 'option_commodity_day':
+                QA_SU_save_option_commodity_day('tdx')
+            elif len(arg) == 1 and arg[0] == 'option_commodity_min':
+                QA_SU_save_option_commodity_min('tdx')
+            elif len(arg) == 1 and arg[0] in ['ox', 'OX', 'oX', 'Ox']:
+                QA_SU_save_option_contract_list('tdx')
+                QA_SU_save_option_50etf_day('tdx')
+                QA_SU_save_option_50etf_min('tdx')
+                QA_SU_save_option_commodity_day('tdx')
+                QA_SU_save_option_commodity_min('tdx')
+
             else:
                 for i in arg:
                     if i == 'insert_user':
@@ -384,29 +417,6 @@ class CLI(cmd.Cmd):
                                 }
                             )
                     else:
-                        '''
-                        save stock_day  :对应输入命令 save stock_day 
-                        save stock_xdxr :对应输入命令 save stock_xdxr 
-                        save stock_min  :对应输入命令 save stock_min 
-                        save index_day  :对应输入命令 save index_day 
-                        save index_min  :对应输入命令 save index_min 
-                        save etf_day    :对应输入命令 save etf_day 
-                        save etf_min    :对应输入命令 save etf_min 
-                        save stock_list :对应输入命令 save stock_list
-                        save stock_block:对应输入命令 save stock_block
-                        save stock_info :对应输入命令 save stock_info
-                        save index_list :对应输入命令 save index_list
-                        save future_list :对应输入命令 save future_list
-                        save future_day  : 对应输入命令  save future_day
-                        save future_min  : 对应输入命令  save future_min
-                        save future_day_all : 对应输入命令 save future_day_all
-                        save future_min_all : 对应输入命令 save future_min_all
-                        save option_day :对应输入命令 save option day
-                        save option_min :对应输入命令 save option_min
-                        save option_commodity_day :对应输入命令 save commodity_option_day
-                        save option_commodity_min :对应输入命令 save commodity_option_min
-                        save option_contract_list :对应输入命令 save option_contract_list
-                        '''
                         try:
                             eval("QA_SU_save_%s('tdx')" % (i))
                         except:
