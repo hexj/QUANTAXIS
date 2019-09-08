@@ -6,6 +6,14 @@
 
 -------------------------------------------------------------
 
+2019-09-07 STU02 第二次直播录像现已上传
+
+[![](https://yutiansut.oss-cn-shenzhen.aliyuncs.com/QASTU02.png)](https://www.bilibili.com/video/av67022443)
+
+[哔哩哔哩 传送门](https://www.bilibili.com/video/av67022443)
+
+-------------------------------------------------------------
+
 Quantitative Financial FrameWork
 
 从数据爬取-清洗存储-分析回测-可视化-交易复盘的本地一站式解决方案
@@ -65,6 +73,7 @@ This project exists thanks to all the people who contribute. [[Contribute](https
 > 欢迎关注公众号: ![公众号](http://pic.yutiansut.com/qrcode_for_gh_bbb47e0550f7_258%20%281%29.jpg)
 
 > 许多问题 可以在 [GITHUB ISSUE](https://github.com/QUANTAXIS/QUANTAXIS/issues)中找到, 你可以提出新的issue
+
 
 QUANTAXIS量化金融策略框架,是一个面向中小型策略团队的量化分析解决方案. 我们通过高度解耦的模块化以及标准化协议,可以快速的实现面向场景的定制化解决方案.QUANTAXIS是一个渐进式的开放式框架,你可以根据自己的需要,引入自己的数据,分析方案,可视化过程等,也可以通过RESTful接口,快速实现多人局域网/广域网内的协作.
 
@@ -201,16 +210,13 @@ wget https://raw.githubusercontent.com/QUANTAXIS/QUANTAXIS/master/config/install
 sudo bash install_docker.sh
 ```
 
-win/mac 安装
+win/mac 安装 一般是 19.03.2 版本的docker 可以去官网下载docker-ce
 
-非常简单 去docker网站下载win/mac的docker_desktop
+https://www.docker.com/products/docker-desktop
+
 
 文件较大, 我在群文件也共享了
 
-或者你可以使用国内镜像站
-
-- win [https://download.daocloud.io/d/Docker_Mirror/Docker_for_Windows_Mac/17.03.1-ce/docker-for-windows-stable.msi]
-- mac [https://download.daocloud.io/d/Docker_Mirror/Docker_for_Windows_Mac/17.03.1-ce/docker-for-mac-stable.dmg]
 
 ps: quantaxis强烈推荐不要使用win10以下的系统...(好吧忽略我)
 
@@ -234,7 +240,7 @@ docker-compose up -d
 - 27017 mongodb
 - 8888 jupyter
 - 8010 quantaxis_webserver
-- 80 quantaxis_community 社区版界面
+- 81 quantaxis_community 社区版界面
 - 61208 系统监控
 - 15672 qa-eventmq
 
