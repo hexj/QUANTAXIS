@@ -26,7 +26,8 @@
 try:
     import talib
 except:
-    print('PLEASE install TALIB to call these methods')
+    pass
+    #print('PLEASE install TALIB to call these methods')
 import pandas as pd
 
 
@@ -56,9 +57,9 @@ def DEMA(Series, timeperiod=30):
     return pd.Series(res, index=Series.index)
 
 
-def EMA(Series, timeperiod=30):
-    res = talib.EMA(Series.values, timeperiod)
-    return pd.Series(res, index=Series.index)
+# def EMA(Series, timeperiod=30):
+#     res = talib.EMA(Series.values, timeperiod)
+#     return pd.Series(res, index=Series.index)
 
 
 def HT_DCPERIOD(Series):
